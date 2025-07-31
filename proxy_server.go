@@ -24,8 +24,8 @@ type Config struct {
 // 默认配置
 var defaultConfig = Config{
 	Port:           ":61055",
-	Username:       "skyzgh",
-	Password:       "5201314zgH",
+	Username:       "username",
+	Password:       "password",
 	TimeoutSeconds: 30,
 }
 
@@ -38,27 +38,27 @@ type ProxyServer struct {
 // 加载配置文件
 func loadConfig() *Config {
 	configFile := "proxy_config.json"
-	
+
 	// 检查配置文件是否存在
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
 		log.Printf("配置文件 %s 不存在，使用默认配置", configFile)
 		return &defaultConfig
 	}
-	
+
 	// 读取配置文件
 	data, err := os.ReadFile(configFile)
 	if err != nil {
 		log.Printf("读取配置文件失败: %v，使用默认配置", err)
 		return &defaultConfig
 	}
-	
+
 	// 解析JSON配置
 	var config Config
 	if err := json.Unmarshal(data, &config); err != nil {
 		log.Printf("解析配置文件失败: %v，使用默认配置", err)
 		return &defaultConfig
 	}
-	
+
 	// 验证配置
 	if config.Port == "" {
 		config.Port = defaultConfig.Port
@@ -72,7 +72,7 @@ func loadConfig() *Config {
 	if config.TimeoutSeconds <= 0 {
 		config.TimeoutSeconds = defaultConfig.TimeoutSeconds
 	}
-	
+
 	log.Printf("成功加载配置文件: %s", configFile)
 	return &config
 }
