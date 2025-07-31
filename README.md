@@ -279,7 +279,9 @@ GOOS=windows GOARCH=amd64 go build -o proxy_server_amd64.exe proxy_server.go
 
 ## 许可证
 
-本项目采用MIT许可证。
+本项目采用 [MIT许可证](LICENSE)。
+
+详细许可证条款请查看 [LICENSE](LICENSE) 文件。
 
 ## 支持
 
